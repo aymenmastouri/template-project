@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- This file specifies a spotbugs filter for excluding reports that
+     should not be considered errors.
+     The format of this file is documented at:
+       https://spotbugs.readthedocs.io/en/latest/filter.html
+     When possible, please specify the full names of the bug codes,
+     using the pattern attribute, to make it clearer what reports are
+     being suppressed.  You can find a listing of codes at:
+       https://spotbugs.readthedocs.io/en/latest/bugDescriptions.html
+  -->
+<FindBugsFilter xmlns="https://github.com/spotbugs/filter/3.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="https://github.com/spotbugs/filter/3.0.0 https://raw.githubusercontent.com/spotbugs/spotbugs/3.1.0/spotbugs/etc/findbugsfilter.xsd">
+
+  <!-- Ignore returning references to internal representations of objects -->
+  <!-- This happens all the time when using records as transport objects or the builder pattern -->
+  <Match>
+    <Bug pattern="EI_EXPOSE_REP"/>
+  </Match>
+
+  <!-- Ignoring when internal representation stores reference to external representation -->
+  <!-- This happens all the time when using records as transport objects or the builder pattern -->
+  <Match>
+    <Bug pattern="EI_EXPOSE_REP2"/>
+  </Match>
+
+  <!-- Exclude generated sources from analysis -->
+  <!-- Doesn't work (anymore): the source file name match does not seem to include the base directory.
+       Looks like this is a regression: https://github.com/spotbugs/spotbugs/issues/1792
+  -->
+  <!--
+  <Match>
+    <Source name="~.*generated-sources.*"/>
+  </Match>
+  -->
+  <!-- Exclude all Builder classes from analysis.
+       This covers both automatically generated and manually written builders as a work-around,
+       as we are not able to exclude only the generated code.
+  -->
+  <Match>
+    <Class name="~.*Builder"/>
+  </Match>
+
+</FindBugsFilter>

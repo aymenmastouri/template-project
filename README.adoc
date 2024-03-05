@@ -1,0 +1,53 @@
+= Template Spring Boot v3 Project with Hexagonal Architecture
+
+This application is based on the Spring Boot framework and uses the hexagonal architecture to enable a clear separation between the different components of the application.
+
+
+== Dev Instruction
+=== Run the service locally
+
+[source,sh]
+----
+mvn spring-boot:run
+----
+
+=== Formatting
+
+For formatting Google AOSP is used with spotless as formatter.
+You can use the Google formatting for your favorite IDE and add the indentation to 4..
+
+To use spotless directly use
+
+[source,sh]
+----
+mvn spotless:apply
+----
+
+=== Static code analysis
+
+Static code analysis is performed via spotbugs, checkstyle and arch unit.
+
+Spotbugs and checkstyle can be executed via maven:
+
+[source,sh]
+----
+mvn spotbugs:spotbugs
+----
+
+[source,sh]
+----
+mvn checkstyle:checkstyle
+----
+
+The arch unit tests check whether the service is compliant to the defined architectural rules.
+The tests are executed as part of the test suite.
+
+
+== Testing
+
+ArchUnit tests are used to verify the architecture.
+
+
+
+
+

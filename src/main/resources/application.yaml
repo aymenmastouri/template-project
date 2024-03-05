@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: template-project
+  flyway:
+    enabled: 'true'
+    locations: classpath:db/migration
+    clean-on-validation-error: 'true'
+  profiles:
+    active: local-dev
+    group:
+      local-dev:
+        - h2
+server:
+  port: '8090'
